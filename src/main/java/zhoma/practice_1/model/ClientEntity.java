@@ -29,7 +29,7 @@ public class ClientEntity {
     private LocalDate update_date;
     private Integer visit_number;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "user_id")
     @JsonManagedReference
     private UserEntity user;

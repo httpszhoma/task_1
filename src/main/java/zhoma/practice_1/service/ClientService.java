@@ -19,7 +19,6 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class ClientService {
     private final ClientRepository repository;
-    private final UserRepository userRepository;
     public ClientEntity getClient(int id) {
         return repository.findById(id).orElseThrow(() -> new ClientNotFoundException(id));
 
@@ -37,9 +36,7 @@ repository.save(clientEntity);
     @Transactional
     public void deleteClient(int id) {
         ClientEntity clientEntity = repository.findById(id).orElseThrow(() -> new ClientNotFoundException(id));
-        clientEntity.setUser(null);
         repository.delete(clientEntity);
-       userRepository.deleteById(id);
 
     }
     @Transactional
